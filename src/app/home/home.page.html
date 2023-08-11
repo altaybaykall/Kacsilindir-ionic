@@ -1,20 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title slot="start">
+      <ion-img class="logo" src="assets/icon/logobeyaz.png"></ion-img>
     </ion-title>
+    
+  <ion-buttons slot="end">
+    <ion-button>
+      <ion-badge  class="badge-person">{{BatteryInfo}}</ion-badge>
+      <ion-icon name="person"></ion-icon>
+    </ion-button>
+  </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
+ 
+  <ion-col>
+    <h3>{{authed}}</h3>
+    <ion-card-title class="brands-title">Markalar</ion-card-title>
+    <ion-list class="brand-slot-item">
+      
+      
+      <ion-item class="brand-slot"  *ngFor="let brand of brands;">
+        <ion-thumbnail class="brands-image-slot">
+          <ion-img class="brands-logo" src="{{logourl}}{{brand.logoraw}}" alt=""></ion-img>
+        </ion-thumbnail>
+        <a class="brands-name" href="/{{brand.brand}}"><h3>{{ brand.brand }}</h3></a>
+      </ion-item>
+      
+    
+    </ion-list>
+     
+    
+  </ion-col>
+  <ion-card class="newscard">
+    <h2>Haberler</h2>
+   
+    <img alt="r8" src="assets/r8.jpg" />
+    <h3>Audi R8 Üretimi sona eriyor.</h3>
+  </ion-card>
+  <ion-card class="havadurumu">
+    <h5>İstanbul</h5>
+    <ion-img class="havaicon2" src="{{imgURL}}{{ istanbul.weather[0].icon}}.png"></ion-img>
+    <ion-label>{{ istanbul.main.temp | number : '1.0-0' }}</ion-label>   
+    <ion-label>{{ istanbul.weather[0].description}}</ion-label>
+    </ion-card>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+
+  <ion-button color="primary"  (click)="authroute()"   expand="full">Dashboard</ion-button>
+  <ion-button color="primary" [routerLink]="['/register']" expand="full">Ana Sayfa</ion-button>
+
 </ion-content>
